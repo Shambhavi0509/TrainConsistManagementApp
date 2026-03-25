@@ -1,29 +1,46 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TrainConsistManagementApp {
+
+    // Bogie class
+    static class Bogie {
+        String name;
+        int capacity;
+
+        Bogie(String name, int capacity) {
+            this.name = name;
+            this.capacity = capacity;
+        }
+    }
 
     public static void main(String[] args) {
 
         System.out.println("=====================================");
-        System.out.println("   UC6 - Map Bogie to Capacity");
+        System.out.println("   UC7 - Sort Bogies by Capacity");
         System.out.println("=====================================\n");
 
-        // Create HashMap
-        Map<String, Integer> capacityMap = new HashMap<>();
+        // Create list of bogies
+        List<Bogie> bogies = new ArrayList<>();
 
-        // Add bogie capacities
-        capacityMap.put("Sleeper", 72);
-        capacityMap.put("AC Chair", 60);
-        capacityMap.put("First Class", 40);
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 60));
+        bogies.add(new Bogie("First Class", 40));
 
-        // Display bogie capacity details
-        System.out.println("Bogie Capacity Details:");
-
-        for (Map.Entry<String, Integer> entry : capacityMap.entrySet()) {
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        // Display before sorting
+        System.out.println("Before Sorting:");
+        for (Bogie b : bogies) {
+            System.out.println(b.name + " -> " + b.capacity);
         }
 
-        System.out.println("\nUC6 operations completed successfully...");
+        // Sort using Comparator (by capacity)
+        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+
+        // Display after sorting
+        System.out.println("\nAfter Sorting (by capacity):");
+        for (Bogie b : bogies) {
+            System.out.println(b.name + " -> " + b.capacity);
+        }
+
+        System.out.println("\nUC7 operations completed successfully...");
     }
 }
